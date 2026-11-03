@@ -1,0 +1,5 @@
+# Master changelog. Tables and data will be added as separate changelog files
+# in the next tasks (Course, Chapter, Lesson), included below, e.g.:
+#   - include:
+#       file: db/changelog/changes/001-create-course-table.yaml
+databaseChangeLog: []
