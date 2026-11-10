@@ -1,0 +1,127 @@
+databaseChangeLog:
+  - changeSet:
+      id: 007-insert-python-lessons
+      author: bitlab
+      changes:
+        - insert:
+            tableName: lesson
+            columns:
+              - column:
+                  name: name
+                  value: "Lecture for Variables and Data Types"
+              - column:
+                  name: description
+                  value: "Dynamic typing, basic data types, naming rules and type conversion in Python."
+              - column:
+                  name: content
+                  value: |-
+                    <h2>Variables and Data Types in Python</h2>
+                    <p>Python is a dynamically typed language. You do not declare a type: you simply assign a value to a name, and Python decides the type automatically. The same name can later point to a value of a different type.</p>
+                    <pre><code>age = 21
+                    price = 19.99
+                    name = "Alice"
+                    is_student = True</code></pre>
+                    <h3>Basic data types</h3>
+                    <p>The most common built-in types are <code>int</code> (whole numbers), <code>float</code> (numbers with a fractional part), <code>str</code> (text) and <code>bool</code> (<code>True</code> or <code>False</code>). You can check the type of a value with the <code>type()</code> function, for example <code>type(age)</code>.</p>
+                    <h3>Naming rules</h3>
+                    <p>Python developers use snake_case for variable names, for example <code>student_age</code>. A name cannot start with a digit and cannot be a keyword such as <code>if</code> or <code>for</code>. Names are case sensitive, so <code>age</code> and <code>Age</code> are two different variables.</p>
+                    <h3>Type conversion</h3>
+                    <p>Use <code>int()</code>, <code>float()</code> and <code>str()</code> to convert values. For example <code>int("42")</code> turns the text "42" into the number 42, and <code>str(3.5)</code> turns a number into text. Data from the <code>input()</code> function is always text, so convert it before doing arithmetic.</p>
+              - column:
+                  name: order_number
+                  valueNumeric: 1
+              - column:
+                  name: chapter_id
+                  valueComputed: "(SELECT ch.id FROM chapter ch JOIN course c ON c.id = ch.course_id WHERE c.name = 'Python Developer' AND ch.name = 'Variables and Data Types')"
+        - insert:
+            tableName: lesson
+            columns:
+              - column:
+                  name: name
+                  value: "Practice for Variables and Data Types"
+              - column:
+                  name: description
+                  value: "Five tasks to practise variables, arithmetic and type conversion in Python."
+              - column:
+                  name: content
+                  value: |-
+                    <h2>Practice: Variables and Data Types</h2>
+                    <ol>
+                    <li>Create variables for a student: name, age, average grade and a flag that shows whether the student has a scholarship. Print them with <code>print()</code>.</li>
+                    <li>Create two numbers, 17 and 5, and print their sum, difference, product, normal division (<code>/</code>), floor division (<code>//</code>) and remainder (<code>%</code>).</li>
+                    <li>Ask the user for their name and year of birth with <code>input()</code> and print how old they will be at the end of this year.</li>
+                    <li>Use <code>type()</code> to print the type of five different values and write a comment about each result.</li>
+                    <li>Convert the text "3.14" to a float and multiply it by 2.</li>
+                    </ol>
+              - column:
+                  name: order_number
+                  valueNumeric: 2
+              - column:
+                  name: chapter_id
+                  valueComputed: "(SELECT ch.id FROM chapter ch JOIN course c ON c.id = ch.course_id WHERE c.name = 'Python Developer' AND ch.name = 'Variables and Data Types')"
+        - insert:
+            tableName: lesson
+            columns:
+              - column:
+                  name: name
+                  value: "Lecture for if, elif and else conditions"
+              - column:
+                  name: description
+                  value: "How to make decisions in Python with if, elif and else, and why indentation matters."
+              - column:
+                  name: content
+                  value: |-
+                    <h2>if, elif and else conditions in Python</h2>
+                    <p>Conditional statements let a program choose what to do depending on the data. In Python, a block of code after a condition is defined by indentation, not by curly braces, so the spaces at the beginning of a line are very important.</p>
+                    <pre><code>age = 18
+                    if age &gt;= 18:
+                        print("You are an adult.")
+                    else:
+                        print("You are a minor.")</code></pre>
+                    <h3>Several conditions with elif</h3>
+                    <p>Use <code>elif</code> (short for "else if") to test several conditions in order. Python runs only the first block whose condition is true.</p>
+                    <pre><code>score = 76
+                    if score &gt;= 90:
+                        print("Excellent")
+                    elif score &gt;= 70:
+                        print("Good")
+                    else:
+                        print("Try again")</code></pre>
+                    <h3>Operators</h3>
+                    <p>Comparison operators are <code>==</code>, <code>!=</code>, <code>&lt;</code>, <code>&gt;</code>, <code>&lt;=</code> and <code>&gt;=</code>. Conditions are combined with the words <code>and</code>, <code>or</code> and <code>not</code>. Python also lets you chain comparisons, for example <code>0 &lt; x &lt; 10</code>.</p>
+                    <h3>Truthy and falsy values</h3>
+                    <p>Any value can be used as a condition. Zero, an empty string, an empty list and <code>None</code> count as false, and almost everything else counts as true. This makes checks such as <code>if name:</code> short and readable.</p>
+              - column:
+                  name: order_number
+                  valueNumeric: 1
+              - column:
+                  name: chapter_id
+                  valueComputed: "(SELECT ch.id FROM chapter ch JOIN course c ON c.id = ch.course_id WHERE c.name = 'Python Developer' AND ch.name = 'if, elif and else conditions')"
+        - insert:
+            tableName: lesson
+            columns:
+              - column:
+                  name: name
+                  value: "Practice for if, elif and else conditions"
+              - column:
+                  name: description
+                  value: "Six tasks to practise conditional statements in Python."
+              - column:
+                  name: content
+                  value: |-
+                    <h2>Practice: if, elif and else conditions</h2>
+                    <ol>
+                    <li>Write a program that checks whether a number is positive, negative or zero and prints the result.</li>
+                    <li>Check whether a number is even or odd with the remainder operator <code>%</code>.</li>
+                    <li>Convert a score from 0 to 100 to a letter grade: 90 and above is A, 80 and above is B, 70 and above is C, 60 and above is D, and anything lower is F.</li>
+                    <li>Ask the user for their age and whether they have a ticket (yes or no). Allow entry only when the user has a ticket and is at least 12 years old.</li>
+                    <li>Find the largest of three numbers without using the built-in <code>max()</code> function.</li>
+                    <li>Check whether a year is a leap year. A year is a leap year when it is divisible by 4, except for years divisible by 100 that are not divisible by 400.</li>
+                    </ol>
+                    <p>Test every program with at least three different input values, including the boundary values such as 0, 60 and 90.</p>
+              - column:
+                  name: order_number
+                  valueNumeric: 2
+              - column:
+                  name: chapter_id
+                  valueComputed: "(SELECT ch.id FROM chapter ch JOIN course c ON c.id = ch.course_id WHERE c.name = 'Python Developer' AND ch.name = 'if, elif and else conditions')"

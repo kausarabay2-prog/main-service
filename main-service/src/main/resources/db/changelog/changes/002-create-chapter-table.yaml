@@ -1,0 +1,62 @@
+databaseChangeLog:
+  - changeSet:
+      id: 002-create-chapter-table
+      author: bitlab
+      changes:
+        - createTable:
+            tableName: chapter
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: description
+                  type: TEXT
+              - column:
+                  name: order_number
+                  type: INTEGER
+                  constraints:
+                    nullable: false
+              - column:
+                  name: course_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_time
+                  type: TIMESTAMP
+                  defaultValueComputed: CURRENT_TIMESTAMP
+                  constraints:
+                    nullable: false
+              - column:
+                  name: updated_time
+                  type: TIMESTAMP
+                  defaultValueComputed: CURRENT_TIMESTAMP
+                  constraints:
+                    nullable: false
+        - addForeignKeyConstraint:
+            baseTableName: chapter
+            baseColumnNames: course_id
+            constraintName: fk_chapter_course
+            referencedTableName: course
+            referencedColumnNames: id
+            onDelete: CASCADE
+  - changeSet:
+      id: 002-create-chapter-course-index
+      author: bitlab
+      changes:
+        - createIndex:
+            tableName: chapter
+            indexName: idx_chapter_course_id
+            columns:
+              - column:
+                  name: course_id

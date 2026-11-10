@@ -1,0 +1,82 @@
+databaseChangeLog:
+  - changeSet:
+      id: 005-insert-chapters
+      author: bitlab
+      changes:
+        # ---------- Java Developer ----------
+        - insert:
+            tableName: chapter
+            columns:
+              - column:
+                  name: name
+                  value: "Variables and Data Types"
+              - column:
+                  name: description
+                  value: "How Java stores data: primitive types, strings, naming rules and type conversion."
+              - column:
+                  name: order_number
+                  valueNumeric: 1
+              - column:
+                  name: course_id
+                  valueComputed: "(SELECT id FROM course WHERE name = 'Java Developer')"
+        - insert:
+            tableName: chapter
+            columns:
+              - column:
+                  name: name
+                  value: "if-else conditions"
+              - column:
+                  name: description
+                  value: "How a Java program makes decisions with if, else if and else, comparison and logical operators."
+              - column:
+                  name: order_number
+                  valueNumeric: 2
+              - column:
+                  name: course_id
+                  valueComputed: "(SELECT id FROM course WHERE name = 'Java Developer')"
+        - insert:
+            tableName: chapter
+            columns:
+              - column:
+                  name: name
+                  value: "Loops"
+              - column:
+                  name: description
+                  value: "How to repeat code with for, while and do-while loops, and how to control them with break and continue."
+              - column:
+                  name: order_number
+                  valueNumeric: 3
+              - column:
+                  name: course_id
+                  valueComputed: "(SELECT id FROM course WHERE name = 'Java Developer')"
+        # ---------- Python Developer ----------
+        - insert:
+            tableName: chapter
+            columns:
+              - column:
+                  name: name
+                  value: "Variables and Data Types"
+              - column:
+                  name: description
+                  value: "How Python stores data: dynamic typing, basic types, naming rules and type conversion."
+              - column:
+                  name: order_number
+                  valueNumeric: 1
+              - column:
+                  name: course_id
+                  valueComputed: "(SELECT id FROM course WHERE name = 'Python Developer')"
+        - insert:
+            tableName: chapter
+            columns:
+              - column:
+                  name: name
+                  value: "if, elif and else conditions"
+              - column:
+                  name: description
+                  value: "How a Python program makes decisions with if, elif and else, and how indentation defines code blocks."
+              - column:
+                  name: order_number
+                  valueNumeric: 2
+              - column:
+                  name: course_id
+                  valueComputed: "(SELECT id FROM course WHERE name = 'Python Developer')"

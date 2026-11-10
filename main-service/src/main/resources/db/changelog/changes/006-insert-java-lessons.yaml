@@ -1,0 +1,201 @@
+databaseChangeLog:
+  - changeSet:
+      id: 006-insert-java-lessons
+      author: bitlab
+      changes:
+        - insert:
+            tableName: lesson
+            columns:
+              - column:
+                  name: name
+                  value: "Lecture for Variables and Data Types"
+              - column:
+                  name: description
+                  value: "What a variable is, the main primitive types, naming rules and type conversion in Java."
+              - column:
+                  name: content
+                  value: |-
+                    <h2>Variables and Data Types in Java</h2>
+                    <p>A variable is a named place in memory where a program stores a value. Java is a statically typed language, which means that you must declare the type of every variable before you use it, and the compiler checks that you use the variable in a way that matches its type.</p>
+                    <h3>Primitive types</h3>
+                    <p>Java has eight primitive types. The most common are <code>int</code> for whole numbers, <code>long</code> for very large whole numbers, <code>double</code> for numbers with a fractional part, <code>boolean</code> for true or false values, and <code>char</code> for a single character. The remaining ones are <code>byte</code>, <code>short</code> and <code>float</code>.</p>
+                    <pre><code>int age = 21;
+                    double price = 19.99;
+                    boolean isStudent = true;
+                    char grade = 'A';
+                    String name = "Alice";</code></pre>
+                    <p><code>String</code> is not a primitive type. It is a class that represents text, and it is used so often that Java lets you create strings with simple double quotes.</p>
+                    <h3>Naming rules</h3>
+                    <p>A variable name may contain letters, digits and underscores, but it cannot start with a digit and cannot be a reserved word such as <code>class</code> or <code>int</code>. By convention, Java developers write variable names in camelCase, for example <code>studentAge</code>, and they choose names that explain the meaning of the value.</p>
+                    <h3>Type conversion</h3>
+                    <p>Java converts a smaller type to a larger one automatically, for example an <code>int</code> can be stored in a <code>double</code>. Going the other way requires an explicit cast, for example <code>int rounded = (int) 3.99;</code>. The cast cuts off the fractional part, so the result is 3 and not 4.</p>
+                    <h3>Constants</h3>
+                    <p>If a value must never change, declare the variable with the keyword <code>final</code>. By convention the names of constants are written in upper case, for example <code>final int MAX_ATTEMPTS = 3;</code>.</p>
+              - column:
+                  name: order_number
+                  valueNumeric: 1
+              - column:
+                  name: chapter_id
+                  valueComputed: "(SELECT ch.id FROM chapter ch JOIN course c ON c.id = ch.course_id WHERE c.name = 'Java Developer' AND ch.name = 'Variables and Data Types')"
+        - insert:
+            tableName: lesson
+            columns:
+              - column:
+                  name: name
+                  value: "Practice for Variables and Data Types"
+              - column:
+                  name: description
+                  value: "Five tasks to practise variables, arithmetic and type conversion in Java."
+              - column:
+                  name: content
+                  value: |-
+                    <h2>Practice: Variables and Data Types</h2>
+                    <p>Complete the following tasks in a new Java class with a <code>main</code> method. Print the result of every task with <code>System.out.println</code>.</p>
+                    <ol>
+                    <li>Declare variables for a student: name (String), age (int), average grade (double) and a flag that shows whether the student has a scholarship (boolean). Print all of them on one line.</li>
+                    <li>Create two int variables, a and b, with the values 17 and 5. Print their sum, difference, product, the result of integer division and the remainder of the division.</li>
+                    <li>Divide 17 by 5 using double variables and compare the output with the integer division from the previous task. Explain the difference in a comment.</li>
+                    <li>Convert the double value 7.95 to int with a cast and print it. What happened to the fractional part?</li>
+                    <li>Store the text "Java" and the number 21 in two variables and print the sentence "I am learning Java 21" by joining them with the + operator.</li>
+                    </ol>
+                    <p>Hint: remember that dividing an int by an int gives an int in Java, so <code>17 / 5</code> is 3, not 3.4.</p>
+              - column:
+                  name: order_number
+                  valueNumeric: 2
+              - column:
+                  name: chapter_id
+                  valueComputed: "(SELECT ch.id FROM chapter ch JOIN course c ON c.id = ch.course_id WHERE c.name = 'Java Developer' AND ch.name = 'Variables and Data Types')"
+        - insert:
+            tableName: lesson
+            columns:
+              - column:
+                  name: name
+                  value: "Lecture for if-else conditions"
+              - column:
+                  name: description
+                  value: "How to make decisions in Java with if, else if and else, comparison and logical operators."
+              - column:
+                  name: content
+                  value: |-
+                    <h2>if-else conditions in Java</h2>
+                    <p>Programs rarely run in a straight line. Very often the code must make a decision: show a message only to adults, apply a discount only when the order is large enough, or reject a password that is too short. Java uses conditional statements for this purpose.</p>
+                    <h3>The if statement</h3>
+                    <p>The <code>if</code> statement runs a block of code only when its condition is true. The condition must be a boolean expression.</p>
+                    <pre><code>int age = 18;
+                    if (age &gt;= 18) {
+                        System.out.println("You are an adult.");
+                    }</code></pre>
+                    <h3>if-else and else if</h3>
+                    <p>Add <code>else</code> to run code when the condition is false. Use <code>else if</code> to check several conditions one after another. Java stops at the first condition that is true and skips the rest.</p>
+                    <pre><code>int score = 76;
+                    if (score &gt;= 90) {
+                        System.out.println("Excellent");
+                    } else if (score &gt;= 70) {
+                        System.out.println("Good");
+                    } else {
+                        System.out.println("Try again");
+                    }</code></pre>
+                    <h3>Comparison and logical operators</h3>
+                    <p>Conditions are built with the comparison operators <code>==</code>, <code>!=</code>, <code>&lt;</code>, <code>&gt;</code>, <code>&lt;=</code> and <code>&gt;=</code>, and combined with the logical operators <code>&amp;&amp;</code> (and), <code>||</code> (or) and <code>!</code> (not). For example, <code>age &gt;= 12 &amp;&amp; hasTicket</code> is true only when both parts are true.</p>
+                    <h3>Common mistakes</h3>
+                    <p>Do not use <code>=</code> (assignment) instead of <code>==</code> (comparison). Do not compare strings with <code>==</code>; use the <code>equals()</code> method, for example <code>name.equals("Alice")</code>. Always use curly braces, even for a single line, because it prevents hard-to-find bugs when the code is changed later.</p>
+              - column:
+                  name: order_number
+                  valueNumeric: 1
+              - column:
+                  name: chapter_id
+                  valueComputed: "(SELECT ch.id FROM chapter ch JOIN course c ON c.id = ch.course_id WHERE c.name = 'Java Developer' AND ch.name = 'if-else conditions')"
+        - insert:
+            tableName: lesson
+            columns:
+              - column:
+                  name: name
+                  value: "Practice for if-else conditions"
+              - column:
+                  name: description
+                  value: "Six tasks to practise conditional statements and logical operators in Java."
+              - column:
+                  name: content
+                  value: |-
+                    <h2>Practice: if-else conditions</h2>
+                    <ol>
+                    <li>Write a program that checks whether an int variable is positive, negative or zero and prints the result.</li>
+                    <li>Check whether a number is even or odd with the remainder operator <code>%</code>.</li>
+                    <li>Convert a score from 0 to 100 to a letter grade: 90 and above is A, 80 and above is B, 70 and above is C, 60 and above is D, and anything lower is F.</li>
+                    <li>Given the age of a visitor and a boolean variable <code>hasTicket</code>, decide whether the visitor may enter. Entry is allowed when the visitor has a ticket and is at least 12 years old.</li>
+                    <li>Find the largest of three int numbers using only if-else statements.</li>
+                    <li>Check whether a year is a leap year. A year is a leap year when it is divisible by 4, except for years divisible by 100 that are not divisible by 400.</li>
+                    </ol>
+                    <p>Test every program with at least three different input values, including the boundary values such as 0, 60 and 90.</p>
+              - column:
+                  name: order_number
+                  valueNumeric: 2
+              - column:
+                  name: chapter_id
+                  valueComputed: "(SELECT ch.id FROM chapter ch JOIN course c ON c.id = ch.course_id WHERE c.name = 'Java Developer' AND ch.name = 'if-else conditions')"
+        - insert:
+            tableName: lesson
+            columns:
+              - column:
+                  name: name
+                  value: "Lecture for Loops"
+              - column:
+                  name: description
+                  value: "The for, while and do-while loops in Java, plus break and continue."
+              - column:
+                  name: content
+                  value: |-
+                    <h2>Loops in Java</h2>
+                    <p>A loop repeats a block of code while some condition stays true. Without loops you would have to copy the same lines again and again. Java provides three main loops: <code>for</code>, <code>while</code> and <code>do-while</code>.</p>
+                    <h3>The for loop</h3>
+                    <p>Use <code>for</code> when you know how many times the code must run. It has three parts: initialization, condition and update.</p>
+                    <pre><code>for (int i = 1; i &lt;= 5; i++) {
+                        System.out.println("Step " + i);
+                    }</code></pre>
+                    <h3>The while loop</h3>
+                    <p>The <code>while</code> loop checks the condition before every iteration. It is the right choice when the number of repetitions is not known in advance.</p>
+                    <pre><code>int number = 1;
+                    while (number &lt; 100) {
+                        number = number * 2;
+                    }
+                    System.out.println(number);</code></pre>
+                    <h3>The do-while loop</h3>
+                    <p>The <code>do-while</code> loop checks the condition after the body, so the body always runs at least once. It is useful, for example, when you ask a user for input and repeat the question until the answer is valid.</p>
+                    <h3>break and continue</h3>
+                    <p>The keyword <code>break</code> stops the loop immediately, and <code>continue</code> skips the rest of the current iteration and moves on to the next one.</p>
+                    <h3>Infinite loops</h3>
+                    <p>If the condition never becomes false, the loop never ends. Always make sure that the variable used in the condition changes inside the loop.</p>
+              - column:
+                  name: order_number
+                  valueNumeric: 1
+              - column:
+                  name: chapter_id
+                  valueComputed: "(SELECT ch.id FROM chapter ch JOIN course c ON c.id = ch.course_id WHERE c.name = 'Java Developer' AND ch.name = 'Loops')"
+        - insert:
+            tableName: lesson
+            columns:
+              - column:
+                  name: name
+                  value: "Practice for Loops"
+              - column:
+                  name: description
+                  value: "Six tasks to practise for and while loops in Java."
+              - column:
+                  name: content
+                  value: |-
+                    <h2>Practice: Loops</h2>
+                    <ol>
+                    <li>Print the numbers from 1 to 20 with a for loop.</li>
+                    <li>Calculate the sum of all numbers from 1 to 100 and print the result.</li>
+                    <li>Print the multiplication table for a number of your choice, for example 7 x 1 = 7 up to 7 x 10 = 70.</li>
+                    <li>Print only the even numbers between 1 and 50 using <code>continue</code>.</li>
+                    <li>Use a while loop to count how many times 1000 can be divided by 2 before the result becomes smaller than 1.</li>
+                    <li>Calculate the factorial of 10.</li>
+                    </ol>
+                    <p>Challenge: print the first 15 numbers of the Fibonacci sequence.</p>
+              - column:
+                  name: order_number
+                  valueNumeric: 2
+              - column:
+                  name: chapter_id
+                  valueComputed: "(SELECT ch.id FROM chapter ch JOIN course c ON c.id = ch.course_id WHERE c.name = 'Java Developer' AND ch.name = 'Loops')"

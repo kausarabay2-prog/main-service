@@ -1,0 +1,23 @@
+databaseChangeLog:
+  - changeSet:
+      id: 004-insert-courses
+      author: bitlab
+      changes:
+        - insert:
+            tableName: course
+            columns:
+              - column:
+                  name: name
+                  value: "Java Developer"
+              - column:
+                  name: description
+                  value: "A beginner-friendly course that teaches the core of the Java programming language: variables and data types, conditional statements and loops. Every lecture is followed by a practice lesson with tasks."
+        - insert:
+            tableName: course
+            columns:
+              - column:
+                  name: name
+                  value: "Python Developer"
+              - column:
+                  name: description
+                  value: "A beginner-friendly course that teaches the basics of Python: variables, data types and conditional statements. Every lecture is followed by a practice lesson with tasks."

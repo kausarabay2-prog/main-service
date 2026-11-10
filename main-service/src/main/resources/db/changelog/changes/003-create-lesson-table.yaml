@@ -1,0 +1,65 @@
+databaseChangeLog:
+  - changeSet:
+      id: 003-create-lesson-table
+      author: bitlab
+      changes:
+        - createTable:
+            tableName: lesson
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: description
+                  type: TEXT
+              - column:
+                  name: content
+                  type: TEXT
+              - column:
+                  name: order_number
+                  type: INTEGER
+                  constraints:
+                    nullable: false
+              - column:
+                  name: chapter_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_time
+                  type: TIMESTAMP
+                  defaultValueComputed: CURRENT_TIMESTAMP
+                  constraints:
+                    nullable: false
+              - column:
+                  name: updated_time
+                  type: TIMESTAMP
+                  defaultValueComputed: CURRENT_TIMESTAMP
+                  constraints:
+                    nullable: false
+        - addForeignKeyConstraint:
+            baseTableName: lesson
+            baseColumnNames: chapter_id
+            constraintName: fk_lesson_chapter
+            referencedTableName: chapter
+            referencedColumnNames: id
+            onDelete: CASCADE
+  - changeSet:
+      id: 003-create-lesson-chapter-index
+      author: bitlab
+      changes:
+        - createIndex:
+            tableName: lesson
+            indexName: idx_lesson_chapter_id
+            columns:
+              - column:
+                  name: chapter_id
