@@ -33,3 +33,11 @@ databaseChangeLog:
                   defaultValueComputed: CURRENT_TIMESTAMP
                   constraints:
                     nullable: false
+  - changeSet:
+      id: 001-add-course-name-unique
+      author: bitlab
+      changes:
+        - addUniqueConstraint:
+            tableName: course
+            columnNames: name
+            constraintName: uq_course_name

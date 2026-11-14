@@ -60,3 +60,11 @@ databaseChangeLog:
             columns:
               - column:
                   name: course_id
+  - changeSet:
+      id: 002-add-chapter-course-name-unique
+      author: bitlab
+      changes:
+        - addUniqueConstraint:
+            tableName: chapter
+            columnNames: course_id, name
+            constraintName: uq_chapter_course_id_name
