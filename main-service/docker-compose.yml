@@ -19,7 +19,7 @@ services:
   main-service:
     # After pushing to Docker Hub, replace `build` with:
     #   image: <dockerhub-username>/lms-main-service:1.0
-    build: .
+    image: kakon775/lms-main-service:1.0
     container_name: lms-main-service
     depends_on:
       postgres:
