@@ -9,6 +9,10 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import com.bitlab.main_service.config.SecurityConfig;
+import org.springframework.context.annotation.Import;
+import org.springframework.security.oauth2.jwt.JwtDecoder;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
@@ -32,6 +36,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * Controller slice test: only the web layer is started, the service is a Mockito mock.
  */
 @WebMvcTest(CourseController.class)
+@Import(SecurityConfig.class)
+@WithMockUser(roles = "ADMIN")
 class CourseControllerTest {
 
     @Autowired
@@ -39,6 +45,9 @@ class CourseControllerTest {
 
     @Autowired
     private ObjectMapper objectMapper;
+
+    @MockBean
+    private JwtDecoder jwtDecoder;
 
     @MockBean
     private CourseService courseService;
