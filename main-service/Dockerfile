@@ -1,12 +1,9 @@
-# ---- build stage ----
 FROM maven:3.9-eclipse-temurin-21 AS build
 WORKDIR /app
 COPY pom.xml .
-RUN mvn -q dependency:go-offline
 COPY src ./src
-RUN mvn -q clean package -DskipTests
+RUN --mount=type=cache,target=/root/.m2 mvn -q -B clean package -DskipTests -Dmaven.wagon.http.retryHandler.count=5 -Dmaven.wagon.httpconnectionManager.ttlSeconds=30
 
-# ---- run stage ----
 FROM eclipse-temurin:21-jre
 WORKDIR /app
 COPY --from=build /app/target/main-service.jar app.jar

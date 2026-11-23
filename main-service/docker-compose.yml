@@ -17,7 +17,7 @@ services:
       retries: 10
 
   main-service:
-    image: kakon775/lms-main-service:1.0
+    image: kakon775/lms-main-service:1.1
     container_name: lms-main-service
     depends_on:
       postgres:
@@ -26,6 +26,7 @@ services:
       SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/lms
       SPRING_DATASOURCE_USERNAME: lms
       SPRING_DATASOURCE_PASSWORD: lms
+      KEYCLOAK_JWK_SET_URI: http://keycloak:8080/realms/lms/protocol/openid-connect/certs
     ports:
       - "8080:8080"
 
@@ -47,7 +48,7 @@ services:
   keycloak:
     image: quay.io/keycloak/keycloak:26.0.7
     container_name: lms-keycloak
-    command: start-dev
+    command: start-dev --import-realm
     depends_on:
       keycloak-db:
         condition: service_healthy
@@ -60,6 +61,8 @@ services:
       KC_BOOTSTRAP_ADMIN_PASSWORD: admin
     ports:
       - "8081:8080"
+    volumes:
+      - ./keycloak/lms-realm.json:/opt/keycloak/data/import/lms-realm.json:ro
 
 volumes:
   lms-pgdata:
