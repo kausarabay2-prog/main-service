@@ -27,6 +27,7 @@ services:
       SPRING_DATASOURCE_USERNAME: lms
       SPRING_DATASOURCE_PASSWORD: lms
       KEYCLOAK_JWK_SET_URI: http://keycloak:8080/realms/lms/protocol/openid-connect/certs
+      SERVER_PORT: "8080"
     ports:
       - "8080:8080"
 
