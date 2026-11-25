@@ -17,7 +17,7 @@ services:
       retries: 10
 
   main-service:
-    image: kakon775/lms-main-service:1.1
+    image: kakon775/lms-main-service:1.2
     container_name: lms-main-service
     depends_on:
       postgres:
@@ -65,6 +65,28 @@ services:
     volumes:
       - ./keycloak/lms-realm.json:/opt/keycloak/data/import/lms-realm.json:ro
 
+  keycloak-init:
+    image: postgres:16
+    container_name: lms-keycloak-init
+    depends_on:
+      keycloak-db:
+        condition: service_healthy
+      keycloak:
+        condition: service_started
+    environment:
+      PGHOST: keycloak-db
+      PGUSER: keycloak
+      PGPASSWORD: keycloak
+      PGDATABASE: keycloak
+    volumes:
+      - ./keycloak/insert.sql:/insert.sql:ro
+    entrypoint:
+      - /bin/sh
+      - -c
+      - |
+        until psql -tAc "SELECT 1 FROM realm WHERE name = 'lms'" 2>/dev/null | grep -q 1; do echo "waiting for realm lms..."; sleep 3; done
+        psql -v ON_ERROR_STOP=1 -f /insert.sql
+    restart: "no"
 volumes:
   lms-pgdata:
   keycloak-pgdata:

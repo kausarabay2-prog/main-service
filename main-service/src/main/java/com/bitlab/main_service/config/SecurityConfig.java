@@ -54,7 +54,7 @@ public class SecurityConfig {
     private Converter<Jwt, AbstractAuthenticationToken> keycloakJwtConverter() {
         return jwt -> {
             Collection<GrantedAuthority> authorities = extractRealmRoles(jwt).stream()
-                    .map(role -> new SimpleGrantedAuthority("ROLE_" + role))
+                    .map(role -> new SimpleGrantedAuthority(role.startsWith("ROLE_") ? role : "ROLE_" + role))
                     .collect(Collectors.toList());
             String username = jwt.getClaimAsString("preferred_username");
             if (username == null) {
